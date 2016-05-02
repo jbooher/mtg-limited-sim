@@ -1,1 +1,14 @@
-Login Here!
+<div class="page-header">
+  <h1>Welcome!  <small>Please login for access.</small> <button type="submit" class="btn btn-default pull-right" ui-sref="register">Register</button></h1>
+</div>
+<form ng-submit="loginCtrl.login()">
+  <div class="form-group">
+    <label for="exampleInputEmail1">Email address</label>
+    <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email" ng-model="loginCtrl.user.email">
+  </div>
+  <div class="form-group">
+    <label for="exampleInputPassword1">Password</label>
+    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" ng-model="loginCtrl.user.password">
+  </div>
+  <button type="submit" class="btn btn-default">Login</button>
+</form>

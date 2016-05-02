@@ -1,6 +1,16 @@
 class SealedController {
-  constructor() {
+  constructor(SimService) {
+    this._SimService = SimService;
 
+
+    this.cardPool = [];
+
+    this.cardPool = this._SimService.getSealedPool();
+  }
+
+  flipCard() {
+    console.log("Flipping Card.");
+    // document.querySelector(".flip-container").classList.toggle('flip');
   }
 }
 

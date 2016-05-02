@@ -1,1 +1,22 @@
-Register Here!
+<div class="page-header">
+  <h1>Welcome!  <small>Please register for access.</small><div class="btn btn-default pull-right" ui-sref="login">Login</div></h1>
+</div>
+<form ng-submit="registerCtrl.register()">
+  <div class="form-group">
+    <label for="exampleInputEmail1">First Name</label>
+    <input type="text" class="form-control" placeholder="First Name" ng-model="registerCtrl.newProfile.firstName">
+  </div>
+  <div class="form-group">
+    <label for="exampleInputPassword1">Last Name</label>
+    <input type="text" class="form-control" placeholder="Last Name" ng-model="registerCtrl.newProfile.lastName">
+  </div>
+  <div class="form-group">
+    <label for="exampleInputEmail1">Email address</label>
+    <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email" ng-model="registerCtrl.newUser.email">
+  </div>
+  <div class="form-group">
+    <label for="exampleInputPassword1">Password</label>
+    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" ng-model="registerCtrl.newUser.password">
+  </div>
+  <button type="submit" class="btn btn-default">Register</button>
+</form>

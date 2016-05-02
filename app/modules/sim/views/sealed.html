@@ -1,1 +1,10 @@
-Sealed here!
+<div class="flip-container" ng-repeat="card in sealedCtrl.cardPool" ng-click="sealedCtrl.flipCard()">
+	<div class="flipper">
+		<div class="front animated bounceInRight">
+      <img class="card-front" ng-src="{{ card.imageUrl }}">
+    </div>
+		<div class="back">
+      <img class="card-back" ng-src="./assets/card-back.jpg">
+		</div>
+	</div>
+</div>
