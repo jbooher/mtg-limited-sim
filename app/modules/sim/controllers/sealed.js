@@ -12,6 +12,12 @@ class SealedController {
     console.log("Flipping Card.");
     // document.querySelector(".flip-container").classList.toggle('flip');
   }
+
+  selectCard(card) {
+    console.log(card + "clicked");
+    card.selected = true;
+    console.log(card);
+  }
 }
 
 export default SealedController;

@@ -1,4 +1,4 @@
-<div class="flip-container" ng-repeat="card in sealedCtrl.cardPool" ng-click="sealedCtrl.flipCard()">
+<div class="flip-container card-pool" ng-hide="card.selected" ng-click="sealedCtrl.selectCard(card)" ng-repeat="card in sealedCtrl.cardPool">
 	<div class="flipper">
 		<div class="front animated bounceInRight">
       <img class="card-front" ng-src="{{ card.imageUrl }}">
