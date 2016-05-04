@@ -1,9 +1,12 @@
 class SimService {
-  constructor($http, $q) {
+  constructor($http, $q, $firebaseObject, $firebaseArray) {
     this._$http = $http;
     this._$q = $q;
+    this._$firebaseObject = $firebaseObject;
+    this._$firebaseArray = $firebaseArray;
 
-    this.cardPool = [];
+    this.ref = new Firebase("https://mtg-limited-sim.firebaseio.com/");
+
   }
 
   getPack() {
@@ -20,22 +23,65 @@ class SimService {
     });
   }
 
-  getSealedPool() {
-    for(let i = 0; i < 6; i++) {
+  saveSealedPool(user) {
+    return new this._$q((resolve, reject) => {
 
-      this.getPack()
+      this.sealedPool = this._$firebaseArray(this.ref.child("users").child(user.uid).child("sealed"));
+
+      this.generateSealedPool(user)
         .then((response) => {
-          response.forEach((card) => {
-            if(card.selected === undefined) {
-              card.selected = false;
-            }
-            this.cardPool.push(card);
-          });
-          console.log(this.cardPool);
-        });
+          let pool = {
+            cards: response,
+            date: new Date(),
+            title: "Default"
+          };
+          return this.sealedPool.$add(pool);
+        })
+        .then((ref) => {
+          resolve(ref.key());
+        })
+        .catch((error) => {
+          reject(error);
+        })
+    });
 
-    }
-    return this.cardPool;
+  }
+
+  generateSealedPool(user) {
+
+    return new this._$q((resolve, reject) => {
+      this.cards = [];
+
+      let promises = [];
+
+      for(let i = 0; i < 6; i++) {
+        promises.push(this.getPack());
+      }
+
+      this._$q.all(promises)
+        .then((response) => {
+
+          response.forEach((pack) => {
+            pack.forEach((card) => {
+              this.cards.push(card);
+            });
+          });
+
+          resolve(this.cards);
+
+        });
+    });
+
+  }
+
+  getAllPools(user) {
+    let pools = this._$firebaseArray(this.ref.child("users").child(user).child("sealed"));
+    return pools.$loaded();
+  }
+
+  getSealedPool(user, id) {
+    let pool = this._$firebaseObject(this.ref.child("users").child(user).child("sealed").child(id));
+    return pool.$loaded();
   }
 
 }

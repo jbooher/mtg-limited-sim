@@ -1,11 +1,42 @@
 class SealedController {
-  constructor(SimService) {
+  constructor(SimService, UserService, $state, $stateParams) {
     this._SimService = SimService;
+    this._UserService = UserService;
+    this._$state = $state;
+    this._$stateParams = $stateParams;
 
+    this.edit = false;
+    this.title = "";
 
-    this.cardPool = [];
+    console.log(new Date());
 
-    this.cardPool = this._SimService.getSealedPool();
+    this._UserService.isLoggedIn()
+      .then((response) => {
+        console.log(response);
+        this.user = response;
+        this.getCards();
+      })
+      .catch((error) => {
+        this._$state.go("login");
+      });
+
+  }
+
+  editTitle() {
+    this.edit = !this.edit;
+  }
+
+  saveTitle() {
+    console.log("saving title");
+    this.edit = false;
+  }
+
+  getCards() {
+    this._SimService.getSealedPool(this.user.uid, this._$stateParams.id)
+      .then((response) => {
+        console.log(response);
+        this.cardPool = response;
+      });
   }
 
   flipCard() {

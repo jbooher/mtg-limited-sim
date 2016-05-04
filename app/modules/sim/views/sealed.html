@@ -1,4 +1,25 @@
-<div class="flip-container card-pool" ng-hide="card.selected" ng-click="sealedCtrl.selectCard(card)" ng-repeat="card in sealedCtrl.cardPool">
+<div class="page-header">
+    <h1>
+      <span>
+        {{ sealedCtrl._UserService.profile.firstName }} {{ sealedCtrl._UserService.profile.lastName }}'s
+        <small>
+          <span ng-hide="sealedCtrl.edit">
+            {{ sealedCtrl.cardPool.title }}
+          </span>
+          <form ng-submit="sealedCtrl.saveTitle()" class="inline" ng-show="sealedCtrl.edit">
+            <input type="text" id="exampleInputName2" ng-model="sealedCtrl.title" placeholder="Title">
+          </form>
+           Sealed Pool
+        </small>
+      </span>
+      <button class="btn btn-default pull-right" ng-click="sealedCtrl.editTitle()">
+        Edit Title
+      </button>
+    </h1>
+
+</div>
+
+<div class="flip-container card-pool" ng-hide="card.selected" ng-click="sealedCtrl.selectCard(card)" ng-repeat="card in sealedCtrl.cardPool.cards">
 	<div class="flipper">
 		<div class="front animated bounceInRight">
       <img class="card-front" ng-src="{{ card.imageUrl }}">

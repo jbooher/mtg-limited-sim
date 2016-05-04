@@ -4,6 +4,9 @@ html {
 *, *::after, *::before {
   box-sizing: inherit; }
 
+.inline {
+  display: inline-block; }
+
 .flip-container {
   display: inline-block; }
 
