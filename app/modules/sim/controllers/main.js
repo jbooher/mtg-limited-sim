@@ -4,10 +4,13 @@ class MainController {
     this._UserService = UserService;
     this._SimService = SimService;
 
+    this.set = "#";
+
     this._UserService.isLoggedIn()
       .then((response) => {
         this.user = response;
         this.getPools();
+        this.getSets();
       })
       .catch((error) => {
         this._$state.go("login");
@@ -17,22 +20,40 @@ class MainController {
   getPools() {
     this._SimService.getAllPools(this.user.uid)
       .then((response) => {
-        console.log(response);
         this.pools = response;
       });
   }
 
-  newSealed() {
-    this._SimService.saveSealedPool(this.user)
+  getSets() {
+    this._SimService.getAllSets()
       .then((response) => {
-        console.log(response);
-        this._$state.go("sealed", {
-          id: response
+        this.sets = [];
+
+        response.forEach((set) => {
+          if(set.booster !== undefined) {
+            this.sets.push(set);
+          }
         });
-      })
-      .catch((error) => {
-        console.error(error);
       });
+  }
+
+  newSealed() {
+    if(this.set !== "#") {
+
+      this._SimService.saveSealedPool(this.user, this.set)
+        .then((response) => {
+          this._$state.go("sealed", {
+            id: response
+          });
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+
+    }
+    else {
+      alert("You must select a set.");
+    }
   }
 
   logout() {

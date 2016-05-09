@@ -1,31 +1,57 @@
-<div class="page-header">
-    <h1>
-      <span>
-        {{ sealedCtrl._UserService.profile.firstName }} {{ sealedCtrl._UserService.profile.lastName }}'s
-        <small>
-          <span ng-hide="sealedCtrl.edit">
-            {{ sealedCtrl.cardPool.title }}
-          </span>
-          <form ng-submit="sealedCtrl.saveTitle()" class="inline" ng-show="sealedCtrl.edit">
-            <input type="text" id="exampleInputName2" ng-model="sealedCtrl.title" placeholder="Title">
-          </form>
-           Sealed Pool
-        </small>
-      </span>
-      <button class="btn btn-default pull-right" ng-click="sealedCtrl.editTitle()">
+<div class="sealed-background">
+
+  <div class="divider">
+    <img src="../assets/magic-logo.png">
+  </div>
+
+  <header class="sealed-header">
+      <h1>
+          {{ sealedCtrl._UserService.profile.firstName }} {{ sealedCtrl._UserService.profile.lastName }}'s
+      </h1>
+      <h2>
+        <span ng-hide="sealedCtrl.edit">
+          {{ sealedCtrl.cardPool.title }}
+        </span>
+        <form ng-submit="sealedCtrl.saveTitle()" ng-show="sealedCtrl.edit">
+          <input type="text" id="exampleInputName2" ng-model="sealedCtrl.title" placeholder="Title">
+        </form>
+         Sealed Pool
+      </h2>
+      <button ng-click="sealedCtrl.editTitle()">
         Edit Title
       </button>
-    </h1>
+      <button ng-click="sealedCtrl.saveDeck()">
+        Save Deck
+      </button>
+  </header>
 
-</div>
+  <div class="play-area">
 
-<div class="flip-container card-pool" ng-hide="card.selected" ng-click="sealedCtrl.selectCard(card)" ng-repeat="card in sealedCtrl.cardPool.cards">
-	<div class="flipper">
-		<div class="front animated bounceInRight">
-      <img class="card-front" ng-src="{{ card.imageUrl }}">
+    <div class="pool" ng-show="sealedCtrl.display === 'sealed'">
+      <div class="card inline" ng-hide="card.selected" ng-click="sealedCtrl.selectCard(card)" ng-repeat="card in sealedCtrl.cardPool.cards | orderBy: ['colors.length', 'colors', 'name']">
+        <img ng-src="{{ card.imageUrl }}">
+      </div>
     </div>
-		<div class="back">
-      <img class="card-back" ng-src="./assets/card-back.jpg">
-		</div>
-	</div>
+
+    <div class="deck" ng-show="sealedCtrl.display === 'deck'">
+      <div class="card inline" ng-show="card.selected" ng-click="sealedCtrl.selectCard(card)" ng-repeat="card in sealedCtrl.cardPool.cards">
+        <img ng-src="{{ card.imageUrl }}">
+      </div>
+    </div>
+
+  </div>
+
+  <footer class="sealed-footer">
+
+    <button>Filter</button>
+
+    <button ng-hide="sealedCtrl.display === 'deck'" ng-click="sealedCtrl.displayDeck()">
+      Show Deck
+    </button>
+
+    <button ng-hide="sealedCtrl.display === 'sealed'" ng-click="sealedCtrl.displaySealed()">
+      Show Sealed Pool
+    </button>
+
+  </footer>
 </div>

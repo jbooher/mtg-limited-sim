@@ -6,13 +6,10 @@ class SealedController {
     this._$stateParams = $stateParams;
 
     this.edit = false;
-    this.title = "";
-
-    console.log(new Date());
+    this.display = 'sealed';
 
     this._UserService.isLoggedIn()
       .then((response) => {
-        console.log(response);
         this.user = response;
         this.getCards();
       })
@@ -27,27 +24,33 @@ class SealedController {
   }
 
   saveTitle() {
-    console.log("saving title");
+    this._SimService.saveTitle(this.title);
     this.edit = false;
+  }
+
+  saveDeck() {
+    this._SimService.save();
   }
 
   getCards() {
     this._SimService.getSealedPool(this.user.uid, this._$stateParams.id)
       .then((response) => {
-        console.log(response);
         this.cardPool = response;
+        console.log(this.cardPool);
+        this.title = this.cardPool.title;
       });
   }
 
-  flipCard() {
-    console.log("Flipping Card.");
-    // document.querySelector(".flip-container").classList.toggle('flip');
+  selectCard(card) {
+    card.selected = !card.selected;
   }
 
-  selectCard(card) {
-    console.log(card + "clicked");
-    card.selected = true;
-    console.log(card);
+  displayDeck() {
+    this.display = 'deck';
+  }
+
+  displaySealed() {
+    this.display = 'sealed';
   }
 }
 
