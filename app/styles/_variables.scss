@@ -1,3 +1,23 @@
 .inline {
   display: inline-block;
 }
+
+$linear-red: linear-gradient(red, darkred 25%, #121212);
+
+@mixin nav-div {
+  text-align: center;
+  color: #fff;
+  font-size: 1.5rem;
+  width: 100%;
+  border-right: 1px solid #000;
+  background: $linear-red;
+  padding: 20px 0;
+
+  &:last-child {
+    border-right: none;
+  }
+
+  &:hover {
+    cursor: pointer;
+  }
+}

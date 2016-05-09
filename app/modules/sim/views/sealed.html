@@ -17,12 +17,14 @@
         </form>
          Sealed Pool
       </h2>
-      <button ng-click="sealedCtrl.editTitle()">
-        Edit Title
-      </button>
-      <button ng-click="sealedCtrl.saveDeck()">
-        Save Deck
-      </button>
+      <nav>
+        <div ng-click="sealedCtrl.editTitle()">
+          Edit Title
+        </div>
+        <div ng-click="sealedCtrl.saveDeck()">
+          Save Deck
+        </div>
+      </nav>
   </header>
 
   <div class="play-area">
@@ -43,15 +45,19 @@
 
   <footer class="sealed-footer">
 
-    <button>Filter</button>
+    <div>Filter</div>
 
-    <button ng-hide="sealedCtrl.display === 'deck'" ng-click="sealedCtrl.displayDeck()">
+    <div ng-hide="sealedCtrl.display === 'deck'" ng-click="sealedCtrl.displayDeck()">
       Show Deck
-    </button>
+    </div>
 
-    <button ng-hide="sealedCtrl.display === 'sealed'" ng-click="sealedCtrl.displaySealed()">
+    <div ng-hide="sealedCtrl.display === 'sealed'" ng-click="sealedCtrl.displaySealed()">
       Show Sealed Pool
-    </button>
+    </div>
 
+  </footer>
+
+  <footer class="sealed-footer--menu">
+    div
   </footer>
 </div>
