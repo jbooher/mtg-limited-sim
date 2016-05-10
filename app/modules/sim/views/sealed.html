@@ -21,6 +21,12 @@
         <div ng-click="sealedCtrl.editTitle()">
           Edit Title
         </div>
+        <div ng-hide="sealedCtrl.display === 'deck'" ng-click="sealedCtrl.displayDeck()">
+          Show Deck
+        </div>
+        <div ng-hide="sealedCtrl.display === 'sealed'" ng-click="sealedCtrl.displaySealed()">
+          Show Pool
+        </div>
         <div ng-click="sealedCtrl.saveDeck()">
           Save Deck
         </div>
@@ -30,13 +36,13 @@
   <div class="play-area">
 
     <div class="pool" ng-show="sealedCtrl.display === 'sealed'">
-      <div class="card inline" ng-hide="card.selected" ng-click="sealedCtrl.selectCard(card)" ng-repeat="card in sealedCtrl.cardPool.cards | orderBy: ['colors.length', 'colors', 'name']">
+      <div class="card inline" ng-hide="card.selected" ng-click="sealedCtrl.selectCard(card)" ng-repeat="card in sealedCtrl.cardPool.cards | orderBy: sealedCtrl.order | filter: sealedCtrl.filter">
         <img ng-src="{{ card.imageUrl }}">
       </div>
     </div>
 
     <div class="deck" ng-show="sealedCtrl.display === 'deck'">
-      <div class="card inline" ng-show="card.selected" ng-click="sealedCtrl.selectCard(card)" ng-repeat="card in sealedCtrl.cardPool.cards">
+      <div class="card inline" ng-show="card.selected" ng-click="sealedCtrl.selectCard(card)" ng-repeat="card in sealedCtrl.cardPool.cards | orderBy: sealedCtrl.order | filter: sealedCtrl.filter">
         <img ng-src="{{ card.imageUrl }}">
       </div>
     </div>
@@ -45,19 +51,73 @@
 
   <footer class="sealed-footer">
 
-    <div>Filter</div>
+    <div ng-click="sealedCtrl.displaySort()">Sort</div>
 
-    <div ng-hide="sealedCtrl.display === 'deck'" ng-click="sealedCtrl.displayDeck()">
-      Show Deck
-    </div>
+    <div ng-click="sealedCtrl.displayFilter()">Filter</div>
 
-    <div ng-hide="sealedCtrl.display === 'sealed'" ng-click="sealedCtrl.displaySealed()">
-      Show Sealed Pool
-    </div>
+    <div ng-click="sealedCtrl.hideMenu()">Hide Menu</div>
 
   </footer>
 
-  <footer class="sealed-footer--menu">
-    div
+  <footer class="sealed-footer--filter" ng-class="{ 'show': sealedCtrl.showFilter }">
+    <div>
+      <label>Color: </label>
+      <select ng-model="sealedCtrl.filterOption" ng-change="sealedCtrl.filterCards('colors')">
+        <option value="#" selected>Filter by color</option>
+        <option value="white">White</option>
+        <option value="blue">Blue</option>
+        <option value="black">Black</option>
+        <option value="red">Red</option>
+        <option value="green">Green</option>
+        <option value="all">All</option>
+      </select>
+    </div>
+    <div>
+      <label>Type: </label>
+      <select ng-model="sealedCtrl.filterOption" ng-change="sealedCtrl.filterCards('types')">
+        <option value="#" selected>Choose a card type</option>
+        <option value="artifact">Artifact</option>
+        <option value="creature">Creature</option>
+        <option value="enchantment">Enchantment</option>
+        <option value="instant">Instant</option>
+        <option value="land">Land</option>
+        <option value="planeswalker">Planeswalker</option>
+        <option value="sorcery">Sorcery</option>
+      </select>
+    </div>
+    <div>
+      <label>Rarity: </label>
+      <select ng-model="sealedCtrl.filterOption" ng-change="sealedCtrl.filterCards('rarity')">
+        <option value="#" selected>Choose a rarity</option>
+        <option value="common">Common</option>
+        <option value="uncommon">Uncommon</option>
+        <option value="rare">Rare</option>
+        <option value="mythic rare">Mythic Rare</option>
+      </select>
+    </div>
+    <div>
+      <label>Cost: </label>
+      <select ng-change="sealedCtrl.filterCards('cmc')" ng-model="sealedCtrl.filterOption">
+        <option value="#">Select a mana cost</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="6">6</option>
+        <option value="7">7</option>
+        <option value="8">8</option>
+        <option value="9">9</option>
+        <option value="10">10</option>
+        <option value="11">11</option>
+        <option value="12">12</option>
+        <option value="13">13</option>
+        <option value="14">14</option>
+        <option value="15">15</option>
+      </select>
+    </div>
+    <div ng-click="sealedCtrl.resetFilters()">
+      Reset Filters
+    </div>
   </footer>
 </div>

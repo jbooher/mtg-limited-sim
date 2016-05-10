@@ -124,7 +124,8 @@ button {
   position: fixed;
   bottom: 0;
   left: 50%;
-  transform: translateX(-50%); }
+  transform: translateX(-50%);
+  z-index: 1000000; }
   .sealed-footer div {
     text-align: center;
     color: #fff;
@@ -137,8 +138,35 @@ button {
       border-right: none; }
     .sealed-footer div:hover {
       cursor: pointer; }
-    .sealed-footer div:nth-last-child(2) {
+
+.sealed-footer--filter {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100vw;
+  position: fixed;
+  bottom: 65px;
+  left: 50%;
+  transform: translate(-50%, 100%);
+  transition: 1s; }
+  .sealed-footer--filter div {
+    text-align: center;
+    color: #fff;
+    font-size: 1.5rem;
+    width: 100%;
+    border-right: 1px solid #000;
+    background: linear-gradient(red, darkred 25%, #121212);
+    padding: 20px 0;
+    height: 65px; }
+    .sealed-footer--filter div:last-child {
       border-right: none; }
+    .sealed-footer--filter div:hover {
+      cursor: pointer; }
+
+.show {
+  height: auto;
+  z-index: 10000;
+  transform: translate(-50%, 0);
+  transition: 1s; }
 
 #loaderDiv {
   font-family: Helvetica;
