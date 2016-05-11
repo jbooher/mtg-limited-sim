@@ -1,5 +1,6 @@
 class SealedController {
-  constructor(SimService, UserService, $state, $stateParams) {
+  constructor(SimService, UserService, $state, $stateParams, $firebaseObject) {
+    this._$firebaseObject = $firebaseObject;
     this._SimService = SimService;
     this._UserService = UserService;
     this._$state = $state;
@@ -9,9 +10,11 @@ class SealedController {
     this.display = 'sealed';
     this.filterOption = "#";
     this.filter = {};
-    this.order = ['colors.length', 'colors', 'cmc', 'name'];
+    this.sort = ['colors.length', 'colors', 'cmc', 'name'];
     this.showFilter = false;
     this.showSort = false;
+    this.showLands = false;
+    this.numLands = 0;
 
     this._UserService.isLoggedIn()
       .then((response) => {
@@ -41,52 +44,86 @@ class SealedController {
     this._SimService.getSealedPool(this.user.uid, this._$stateParams.id)
       .then((response) => {
         this.cardPool = response;
+        this.deck = response.cards.filter((card) => {
+          return card.selected === true;
+        });
+        console.log(this.deck);
         console.log(this.cardPool);
         this.title = this.cardPool.title;
       });
   }
 
-  selectCard(card) {
-    card.selected = !card.selected;
+  addCard(card) {
+    card.selected = true;
+
+    this.deck.push(card);
+    // this._SimService.save();
   }
 
-  displayDeck() {
-    this.display = 'deck';
+  removeCard(card) {
+    card.selected = false;
+
+    this.deck.splice(this.deck.indexOf(card), 1);
+    // this._SimService.save();
   }
 
-  displaySealed() {
-    this.display = 'sealed';
+  addLands(land) {
+    for(let i = 0; i < this.numLands; i++) {
+      this.deck.push({
+        name: land,
+        imageUrl: `../assets/${land}.jpeg`,
+        selected: true
+      });
+    }
+
+    this.numLands = 0;
+  }
+
+  displayChange() {
+    if (this.display === 'sealed') {
+      this.display = 'deck';
+    }
+    else {
+      this.display = 'sealed';
+    }
   }
 
   displaySort() {
-    this.showSort = true;
     this.showFilter = false;
+    this.showLands = false;
+    this.showSort = !this.showSort;
   }
 
   displayFilter() {
-    this.showFilter = true;
     this.showSort = false;
+    this.showLands = false;
+    this.showFilter = !this.showFilter;
   }
 
-  hideMenu() {
+  displayLands() {
     this.showFilter = false;
     this.showSort = false;
+    this.showLands = !this.showLands;
+  }
+
+  sortCards(option) {
+    if(this.sort.indexOf('colors.length') >= 0) {
+      this.sort = [];
+    }
+
+    this.sort.push(option);
+  }
+
+  resetSort() {
+    this.sort = ['colors.length', 'colors', 'cmc', 'name'];
   }
 
   filterCards(property) {
-    console.log(property);
-    console.log(this.filterOption);
-
     if (property === 'cmc') {
       this.filterOption = Number(this.filterOption);
     }
-
-    if (this.filterOption === "#" || this.filterOption === undefined) {
-      alert("Please select an option.");
-    }
     else {
       this.filter[property] = this.filterOption;
-      console.log(this.filter);
     }
   }
 

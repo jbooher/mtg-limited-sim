@@ -105,7 +105,6 @@ class SimService {
   save() {
     this.pool.$save();
   }
-
 }
 
 export default SimService;

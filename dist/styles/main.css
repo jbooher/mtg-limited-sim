@@ -34,7 +34,7 @@ a {
 button {
   font-family: "MTG";
   letter-spacing: .15rem;
-  font-size: 1rem;
+  font-size: .5rem;
   color: #fff;
   padding: 10px 20px;
   border: none;
@@ -72,7 +72,8 @@ button {
   position: fixed;
   top: 0;
   left: 50%;
-  transform: translateX(-50%); }
+  transform: translateX(-50%);
+  z-index: 10000; }
   .sealed-header h1, .sealed-header h2 {
     width: 95%;
     margin: 0 auto;
@@ -88,9 +89,13 @@ button {
     width: 100vw; }
     .sealed-header nav div {
       text-align: center;
+      display: flex;
+      justify-content: center;
+      align-items: center;
       color: #fff;
-      font-size: 1.5rem;
+      font-size: 1rem;
       width: 100%;
+      height: 65px;
       border-right: 1px solid #000;
       background: linear-gradient(red, darkred 25%, #121212);
       padding: 20px 0; }
@@ -103,10 +108,12 @@ button {
   display: flex;
   height: 100vh;
   align-items: center;
-  z-index: 1000; }
+  z-index: 1000;
+  padding-top: 100px; }
   .play-area.display {
     justify-content: flex-end; }
   .play-area .pool, .play-area .deck {
+    padding: 100px 0;
     white-space: nowrap;
     overflow-x: scroll;
     z-index: 1000; }
@@ -128,9 +135,13 @@ button {
   z-index: 1000000; }
   .sealed-footer div {
     text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     color: #fff;
-    font-size: 1.5rem;
+    font-size: 1rem;
     width: 100%;
+    height: 65px;
     border-right: 1px solid #000;
     background: linear-gradient(red, darkred 25%, #121212);
     padding: 20px 0; }
@@ -139,34 +150,38 @@ button {
     .sealed-footer div:hover {
       cursor: pointer; }
 
-.sealed-footer--filter {
+.sealed-footer--filter, .sealed-footer--sort, .sealed-footer--lands {
   display: flex;
   flex-wrap: wrap;
   width: 100vw;
+  z-index: 10000;
   position: fixed;
   bottom: 65px;
   left: 50%;
   transform: translate(-50%, 100%);
-  transition: 1s; }
-  .sealed-footer--filter div {
+  transition: .7s; }
+  .sealed-footer--filter div, .sealed-footer--sort div, .sealed-footer--lands div {
     text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     color: #fff;
-    font-size: 1.5rem;
+    font-size: 1rem;
     width: 100%;
+    height: 65px;
     border-right: 1px solid #000;
     background: linear-gradient(red, darkred 25%, #121212);
     padding: 20px 0;
     height: 65px; }
-    .sealed-footer--filter div:last-child {
+    .sealed-footer--filter div:last-child, .sealed-footer--sort div:last-child, .sealed-footer--lands div:last-child {
       border-right: none; }
-    .sealed-footer--filter div:hover {
+    .sealed-footer--filter div:hover, .sealed-footer--sort div:hover, .sealed-footer--lands div:hover {
       cursor: pointer; }
 
 .show {
   height: auto;
-  z-index: 10000;
   transform: translate(-50%, 0);
-  transition: 1s; }
+  transition: .7s; }
 
 #loaderDiv {
   font-family: Helvetica;

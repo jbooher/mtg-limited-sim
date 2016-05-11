@@ -30,6 +30,7 @@
   top: 0;
   left: 50%;
   transform: translateX(-50%);
+  z-index: 10000;
 
   h1, h2 {
 
@@ -55,6 +56,7 @@
 
     div {
       @include nav-div;
+
     }
 
   }
@@ -66,12 +68,14 @@
   height: 100vh;
   align-items: center;
   z-index: 1000;
+  padding-top: 100px;
 
   &.display {
     justify-content: flex-end;
   }
 
   .pool, .deck {
+    padding: 100px 0;
     white-space: nowrap;
     overflow-x: scroll;
     z-index: 1000;
@@ -103,15 +107,16 @@
   }
 }
 
-.sealed-footer--filter {
+.sealed-footer--filter, .sealed-footer--sort, .sealed-footer--lands {
   display: flex;
   flex-wrap: wrap;
   width: 100vw;
+  z-index: 10000;
   position: fixed;
   bottom: 65px;
   left: 50%;
   transform: translate(-50%, 100%);
-  transition: 1s;
+  transition: .7s;
 
   div {
     @include nav-div;
@@ -121,7 +126,6 @@
 
 .show {
   height: auto;
-  z-index: 10000;
   transform: translate(-50%, 0);
-  transition: 1s;
+  transition: .7s;
 }
