@@ -36,46 +36,36 @@ class SealedController {
     this.edit = false;
   }
 
-  saveDeck() {
-    this._SimService.save();
-  }
-
   getCards() {
     this._SimService.getSealedPool(this.user.uid, this._$stateParams.id)
       .then((response) => {
-        this.cardPool = response;
-        this.deck = response.cards.filter((card) => {
-          return card.selected === true;
-        });
-        console.log(this.deck);
-        console.log(this.cardPool);
-        this.title = this.cardPool.title;
+        this.sealedPool = response[0];
+        this.cards = response[1];
+        this.title = this.sealedPool.title;
+        this.count = 0;
+        this.cards.forEach((card) => {
+          if(card.selected === true) {
+            this.count += 1;
+          }
+        })
       });
   }
 
-  addCard(card) {
-    card.selected = true;
+  toggleCard(card) {
+    if (card.selected === false) {
+      this.count += 1;
+    }
+    else {
+      this.count -= 1;
+    }
 
-    this.deck.push(card);
-    // this._SimService.save();
-  }
-
-  removeCard(card) {
-    card.selected = false;
-
-    this.deck.splice(this.deck.indexOf(card), 1);
-    // this._SimService.save();
+    card.selected = !card.selected;
+    this._SimService.save(card);
   }
 
   addLands(land) {
-    for(let i = 0; i < this.numLands; i++) {
-      this.deck.push({
-        name: land,
-        imageUrl: `../assets/${land}.jpeg`,
-        selected: true
-      });
-    }
-
+    this._SimService.addLand(land, this.numLands);
+    this.count += this.numLands;
     this.numLands = 0;
   }
 
@@ -104,6 +94,12 @@ class SealedController {
     this.showFilter = false;
     this.showSort = false;
     this.showLands = !this.showLands;
+  }
+
+  hideMenus() {
+    this.showFilter = false;
+    this.showSort = false;
+    this.showLands = false;
   }
 
   sortCards(option) {

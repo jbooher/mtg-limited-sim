@@ -183,6 +183,12 @@ button {
   transform: translate(-50%, 0);
   transition: .7s; }
 
+.green {
+  color: green; }
+
+.red {
+  color: red; }
+
 #loaderDiv {
   font-family: Helvetica;
   position: fixed;

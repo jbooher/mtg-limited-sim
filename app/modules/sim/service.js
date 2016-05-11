@@ -36,22 +36,57 @@ class SimService {
     })
   }
 
+  addLand(land, num) {
+
+    const nonstandalone = ['ARN', 'ATQ', 'LEG', 'DRK', 'FEM', 'HML'];
+    let landSet = this.pool.set;
+
+    if (nonstandalone.indexOf(landSet) > -1) {
+      landSet = 'ICE';
+    }
+
+    this._$http
+      .get(`https://api.magicthegathering.io/v1/cards?supertypes=Basic&types=land&name=${land}&set=${landSet}`)
+      .then((response) => {
+        let landCards = response.data.cards;
+
+        for(let i = 0; i < num; i++) {
+          let card = landCards[Math.floor(Math.random() * landCards.length)];
+          card.selected = true;
+          this.cards.$add(card);
+        }
+
+      })
+
+  }
+
   saveSealedPool(user, set) {
     return new this._$q((resolve, reject) => {
 
-      this.sealedPool = this._$firebaseArray(this.ref.child("users").child(user.uid).child("sealed"));
+      this.allPools = this._$firebaseArray(this.ref.child("users").child(user.uid).child("sealed"));
 
-      this.generateSealedPool(set)
-        .then((response) => {
-          let pool = {
-            cards: response,
-            date: new Date(),
-            title: "Default"
-          };
-          return this.sealedPool.$add(pool);
-        })
+      let newPool = {
+        date: new Date(),
+        title: "Default",
+        set: set
+      };
+
+      let key = '';
+
+      this.allPools.$add(newPool)
         .then((ref) => {
-          resolve(ref.key());
+          key = ref.key();
+          return this.generateSealedPool(set);
+        })
+        .then((response) => {
+          let pool = this._$firebaseArray(this.ref.child("users").child(user.uid).child("sealed").child(key).child("cards"));
+
+          response.forEach((card) => {
+            card.selected = false;
+            pool.$add(card);
+          });
+
+          resolve(key);
         })
         .catch((error) => {
           reject(error);
@@ -93,8 +128,12 @@ class SimService {
   }
 
   getSealedPool(user, id) {
+    this.poolId = id;
+    this.user = user;
     this.pool = this._$firebaseObject(this.ref.child("users").child(user).child("sealed").child(id));
-    return this.pool.$loaded();
+    this.cards = this._$firebaseArray(this.ref.child("users").child(user).child("sealed").child(id).child("cards"));
+
+    return this._$q.all([this.pool.$loaded(), this.cards.$loaded()]);
   }
 
   saveTitle(title) {
@@ -102,8 +141,9 @@ class SimService {
     this.pool.$save();
   }
 
-  save() {
-    this.pool.$save();
+  save(card) {
+    return this.ref.child("users").child(this.user).child("sealed").child(this.poolId).child("cards").child(card.$id)
+      .update({ selected: card.selected });
   }
 }
 

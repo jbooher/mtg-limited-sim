@@ -11,10 +11,10 @@
       <h2>
         Deck Name:
         <span ng-hide="sealedCtrl.edit">
-          {{ sealedCtrl.cardPool.title }} ({{ sealedCtrl.deck.length }}/40)
+          {{ sealedCtrl.sealedPool.title }}
         </span>
         <form class="inline" ng-submit="sealedCtrl.saveTitle()" ng-show="sealedCtrl.edit">
-          <input type="text" id="exampleInputName2" ng-model="sealedCtrl.title" placeholder="Title">
+          <input type="text" ng-model="sealedCtrl.title" placeholder="Title">
         </form>
       </h2>
       <nav>
@@ -33,8 +33,8 @@
         <div ng-hide="sealedCtrl.display === 'sealed'" ng-click="sealedCtrl.displayChange()">
           Show Pool
         </div>
-        <div ng-click="sealedCtrl.saveDeck()">
-          Save Deck
+        <div>
+          <span ng-class="{'green': sealedCtrl.count === 40, 'red': sealedCtrl.count > 40}">{{ sealedCtrl.count }}/40 Cards</span>
         </div>
       </nav>
   </header>
@@ -42,13 +42,13 @@
   <div class="play-area">
 
     <div class="pool" ng-show="sealedCtrl.display === 'sealed'">
-      <div class="card inline" ng-hide="card.selected" ng-click="sealedCtrl.addCard(card)" ng-repeat="card in sealedCtrl.cardPool.cards | orderBy: sealedCtrl.sort | filter: sealedCtrl.filter">
+      <div class="card inline" ng-hide="card.selected" ng-click="sealedCtrl.toggleCard(card)" ng-repeat="card in sealedCtrl.cards | orderBy: sealedCtrl.sort | filter: {'selected': false}| filter: sealedCtrl.filter">
         <img ng-src="{{ card.imageUrl }}">
       </div>
     </div>
 
     <div class="deck" ng-show="sealedCtrl.display === 'deck'">
-      <div class="card inline" ng-click="sealedCtrl.removeCard(card)" ng-repeat="card in sealedCtrl.deck | orderBy: sealedCtrl.sort | filter: sealedCtrl.filter">
+      <div class="card inline" ng-click="sealedCtrl.toggleCard(card)" ng-repeat="card in sealedCtrl.cards | orderBy: sealedCtrl.sort | filter: {'selected': true}| filter: sealedCtrl.filter">
         <img ng-src="{{ card.imageUrl }}">
       </div>
     </div>
@@ -59,7 +59,7 @@
     <div ng-click="sealedCtrl.displaySort()">Sort</div>
     <div ng-click="sealedCtrl.displayFilter()">Filter</div>
     <div ng-click="sealedCtrl.displayLands()">Add Lands</div>
-    <div>Analyze Deck</div>
+    <div ng-click="sealedCtrl.hideMenus()">Analyze Deck</div>
   </footer>
 
   <footer class="sealed-footer--sort" ng-class="{ 'show': sealedCtrl.showSort }">
@@ -80,7 +80,6 @@
         <option value="black">Black</option>
         <option value="red">Red</option>
         <option value="green">Green</option>
-        <option value="all">All</option>
       </select>
     </div>
     <div>
@@ -136,7 +135,7 @@
     <div>
       Plains
       <input type="number" min="1" ng-model="sealedCtrl.numLands">
-      <input type="submit" value="Add Lands" ng-click="sealedCtrl.addLands('plains')">
+      <input type="submit" value="Add Lands" ng-click="sealedCtrl.addLands('Plains')">
     </div>
     <div>
       Islands
