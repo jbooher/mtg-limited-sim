@@ -43,7 +43,7 @@ button {
 .main-background {
   width: 100vw;
   min-height: 100vh;
-  background: linear-gradient(rgba(161, 133, 109, 0.5), rgba(161, 133, 109, 0.7), #a1856d), url(../../assets/skulls.jpg);
+  background: linear-gradient(rgba(161, 133, 109, 0.5), rgba(161, 133, 109, 0.7), #a1856d), url(../assets/skulls.jpg);
   background-size: cover;
   color: white;
   text-shadow: 2px 2px 3px #273459;
@@ -52,7 +52,7 @@ button {
     height: 300px;
     width: 100%;
     margin: -2rem 0;
-    background-image: url(../../assets/lotus.jpg);
+    background-image: url(../assets/lotus.jpg);
     background-size: cover;
     transform: skewY(-5deg);
     border-bottom: 3px solid #6d5f4f; }
@@ -360,7 +360,7 @@ select {
   color: red; }
 
 .login-background {
-  background-image: url(../../assets/jace.jpg);
+  background-image: url(../assets/jace.jpg);
   height: 100vh;
   width: 100vw;
   position: relative;
@@ -406,7 +406,7 @@ select {
       max-width: 650px; } }
 
 .register-background {
-  background-image: url(../../assets/jace.jpg);
+  background-image: url(../assets/jace.jpg);
   height: 100vh;
   width: 100vw;
   position: relative;

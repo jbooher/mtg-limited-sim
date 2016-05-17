@@ -1,7 +1,7 @@
 .main-background {
   width: 100vw;
   min-height: 100vh;
-  background: linear-gradient(rgba(161, 133, 109, .5), rgba(161, 133, 109, .7), rgba(161, 133, 109, 1)), url(../../assets/skulls.jpg);
+  background: linear-gradient(rgba(161, 133, 109, .5), rgba(161, 133, 109, .7), rgba(161, 133, 109, 1)), url(../assets/skulls.jpg);
   background-size: cover;
   color: white;
   text-shadow: 2px 2px 3px #273459;
@@ -11,7 +11,7 @@
     height: 300px;
     width: 100%;
     margin: -2rem 0;
-    background-image: url(../../assets/lotus.jpg);
+    background-image: url(../assets/lotus.jpg);
     background-size: cover;
     transform: skewY(-5deg);
     border-bottom: 3px solid rgb(109, 95, 79);
@@ -180,7 +180,6 @@
 @media screen and (min-width: 960px) {
   .sealed-new, .set-dropdown {
     display: flex;
-    // flex-direction: row-reverse;
     justify-content: space-between;
     align-items: center;
   }
