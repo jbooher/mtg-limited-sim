@@ -1,4 +1,186 @@
-.main {
-  display: flex;
-  justify-content: space-between;
+.main-background {
+  width: 100vw;
+  min-height: 100vh;
+  background: linear-gradient(rgba(161, 133, 109, .5), rgba(161, 133, 109, .7), rgba(161, 133, 109, 1)), url(../../assets/skulls.jpg);
+  background-size: cover;
+  color: white;
+  text-shadow: 2px 2px 3px #273459;
+  overflow: hidden;
+
+  .page-header {
+    height: 300px;
+    width: 100%;
+    margin: -2rem 0;
+    background-image: url(../../assets/lotus.jpg);
+    background-size: cover;
+    transform: skewY(-5deg);
+    border-bottom: 3px solid rgb(109, 95, 79);
+
+    @media screen and (min-width: 750px) {
+      height: calc(300px + 3rem);
+      margin: -3rem 0;
+    }
+
+    @media screen and (min-width: 960px) {
+      height: calc(300px + 4rem);
+      margin: -4rem 0;
+    }
+
+    h1 {
+      padding: 60px 0 0 0;
+      width: 95%;
+      margin-left: auto;
+      margin-right: auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      transform: skewY(5deg);
+
+      @media screen and (min-width: 650px) {
+        button {
+          font-size: 1rem;
+        }
+      }
+
+      @media screen and (min-width: 960px) {
+        max-width: 960px;
+        font-size: 3rem;
+        padding: 80px 0 0 0;
+
+        button {
+          font-size: 1.75rem;
+        }
+      }
+
+      @media screen and (min-width: 1200px) {
+        max-width: 80%;
+      }
+    }
+  }
+
+  .main-container {
+    width: 95%;
+    margin: 3.5rem auto 0 auto;
+
+    @media screen and (min-width: 650px) {
+      .getting-started, h3 {
+        text-align: right;
+      }
+    }
+
+    @media screen and (min-width: 960px) {
+      max-width: 960px;
+    }
+
+    @media screen and (min-width: 1200px) {
+      max-width: 80%;
+    }
+
+    h2, h3, select, button {
+      margin-bottom: 20px;
+
+      @media screen and (min-width: 960px) {
+        margin-bottom: 40px;
+      }
+    }
+
+    h2 {
+      margin-bottom: 10px;
+
+      @media screen and (min-width: 960px) {
+        font-size: 2rem;
+        margin-bottom: 20px;
+      }
+    }
+
+    select {
+      font-family: "MTG";
+      font-size: 1rem;
+      letter-spacing: .15rem;
+      height: 45px;
+      color: white;
+      border: none;
+      border-radius: 500px;
+      background: $linear-background;
+      outline: none;
+    }
+
+    select, button {
+      font-size: 1rem;
+      letter-spacing: .15rem;
+      padding: 20px 0;
+      width: 100%;
+
+      @media screen and (min-width: 960px) {
+        width: 50%;
+      }
+    }
+
+    .previous-pools {
+      text-align: center;
+    }
+  }
+
+  .pools {
+    width: 100%;
+    margin: 0 auto;
+    border-top: 2px solid rgb(109, 95, 79);
+    border-bottom: 2px solid rgb(109, 95, 79);
+
+    @media screen and (min-width: 960px) {
+      max-width: 960px;
+      border-left: 2px solid rgb(109, 95, 79);
+      border-right: 2px solid rgb(109, 95, 79);
+    }
+
+    @media screen and (min-width: 1200px) {
+      max-width: 80%;
+    }
+
+    .pool-placeholder {
+      text-align: center;
+      padding: 20px 0;
+    }
+
+    .pool {
+      border-bottom: 2px solid rgb(109, 95, 79);
+      cursor: pointer;
+      background: rgba(0,0,0,.5);
+
+      &:last-child {
+        border-bottom: none;
+      }
+
+      &-container {
+        width: 95%;
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+      }
+
+      &-name {
+        padding: 20px 0;
+        width: 100%;
+      }
+
+      &-delete {
+        padding: 20px 0;
+        text-align: center;
+        width: 100px;
+        margin-right: -2.5%;
+        border-left: 2px solid rgb(109, 95, 79);
+        background: linear-gradient(rgba(255,0,0,.5), rgba(155,0,0,.5), rgba(55,0,0,.5));
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 960px) {
+  .sealed-new, .set-dropdown {
+    display: flex;
+    // flex-direction: row-reverse;
+    justify-content: space-between;
+    align-items: center;
+  }
 }

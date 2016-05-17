@@ -36,13 +36,38 @@ class SimService {
     })
   }
 
+  getSet(set) {
+    return new this._$q((resolve, reject) => {
+      this._$http
+        .get(`https://api.magicthegathering.io/v1/sets/${set}`)
+        .then((response) => {
+          this.set = response.data;
+          resolve(this.set);
+        })
+        .catch((error) => {
+          reject(this.error);
+        })
+    })
+  }
+
   addLand(land, num) {
 
-    const nonstandalone = ['ARN', 'ATQ', 'LEG', 'DRK', 'FEM', 'HML'];
+    const hasLands = ["LEA", "LEB", "2ED", "CED", "CEI", "3ED",
+    "4ED", "ICE", "RQS", "pARL", "MIR", "ITP", "5ED", "POR",
+    "pPRE", "TMP", "pJGP", "PO2", "UGL", "pALP", "USG", "ATH",
+    "6ED", "PTK", "S99", "pGRU", "MMQ", "BRB", "pELP", "S00", "INV",
+    "7ED", "ODY", "ONS", "8ED", "MRD", "CHK", "UNH", "9ED", "RAV",
+    "CST", "TSP", "10E", "MED", "LRW", "SHM", "ALA", "DDC", "M10",
+    "HOP", "ME3", "ZEN", "H09", "DDE", "ROE", "ARC", "M11", "DDF",
+    "SOM", "MBS", "DDG", "NPH", "CMD", "M12", "DDH", "ISD", "DDI",
+    "AVR", "PC2", "M13", "RTR", "DDK", "M14", "DDL", "THS", "C13",
+    "MD1", "M15", "DDN", "KTK", "C14", "DD3_DVD", "FRF", "DDO",
+    "DTK", "TPR", "ORI", "DDP", "BFZ", "C15", "DDQ", "SOI"];
+
     let landSet = this.pool.set;
 
-    if (nonstandalone.indexOf(landSet) > -1) {
-      landSet = 'ICE';
+    if (hasLands.indexOf(landSet) === -1) {
+      landSet = 'BFZ';
     }
 
     this._$http
@@ -134,6 +159,10 @@ class SimService {
     this.cards = this._$firebaseArray(this.ref.child("users").child(user).child("sealed").child(id).child("cards"));
 
     return this._$q.all([this.pool.$loaded(), this.cards.$loaded()]);
+  }
+
+  delete(pool) {
+    this.pools.$remove(pool);
   }
 
   saveTitle(title) {

@@ -13,7 +13,7 @@ html {
 
 @font-face {
   font-family: "MTG";
-  src: url("../assets/MAGIC.TTF"); }
+  src: url("../assets/beleren-bold-webfont.ttf"); }
 
 body {
   margin: 0;
@@ -34,16 +34,159 @@ a {
 button {
   font-family: "MTG";
   letter-spacing: .15rem;
-  font-size: .5rem;
   color: #fff;
   padding: 10px 20px;
   border: none;
   border-radius: 10px;
-  background: linear-gradient(red, darkred 25%, #121212); }
+  background: linear-gradient(#4599BA, #1B6D92, #303560, #000037); }
 
-.main {
-  display: flex;
-  justify-content: space-between; }
+.main-background {
+  width: 100vw;
+  min-height: 100vh;
+  background: linear-gradient(rgba(161, 133, 109, 0.5), rgba(161, 133, 109, 0.7), #a1856d), url(../../assets/skulls.jpg);
+  background-size: cover;
+  color: white;
+  text-shadow: 2px 2px 3px #273459;
+  overflow: hidden; }
+  .main-background .page-header {
+    height: 300px;
+    width: 100%;
+    margin: -2rem 0;
+    background-image: url(../../assets/lotus.jpg);
+    background-size: cover;
+    transform: skewY(-5deg);
+    border-bottom: 3px solid #6d5f4f; }
+    @media screen and (min-width: 750px) {
+      .main-background .page-header {
+        height: calc(300px + 3rem);
+        margin: -3rem 0; } }
+    @media screen and (min-width: 960px) {
+      .main-background .page-header {
+        height: calc(300px + 4rem);
+        margin: -4rem 0; } }
+    .main-background .page-header h1 {
+      padding: 60px 0 0 0;
+      width: 95%;
+      margin-left: auto;
+      margin-right: auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transform: skewY(5deg); }
+      @media screen and (min-width: 650px) {
+        .main-background .page-header h1 button {
+          font-size: 1rem; } }
+      @media screen and (min-width: 960px) {
+        .main-background .page-header h1 {
+          max-width: 960px;
+          font-size: 3rem;
+          padding: 80px 0 0 0; }
+          .main-background .page-header h1 button {
+            font-size: 1.75rem; } }
+      @media screen and (min-width: 1200px) {
+        .main-background .page-header h1 {
+          max-width: 80%; } }
+  .main-background .main-container {
+    width: 95%;
+    margin: 3.5rem auto 0 auto; }
+    @media screen and (min-width: 650px) {
+      .main-background .main-container .getting-started, .main-background .main-container h3 {
+        text-align: right; } }
+    @media screen and (min-width: 960px) {
+      .main-background .main-container {
+        max-width: 960px; } }
+    @media screen and (min-width: 1200px) {
+      .main-background .main-container {
+        max-width: 80%; } }
+    .main-background .main-container h2, .main-background .main-container h3, .main-background .main-container select, .main-background .main-container button {
+      margin-bottom: 20px; }
+      @media screen and (min-width: 960px) {
+        .main-background .main-container h2, .main-background .main-container h3, .main-background .main-container select, .main-background .main-container button {
+          margin-bottom: 40px; } }
+    .main-background .main-container h2 {
+      margin-bottom: 10px; }
+      @media screen and (min-width: 960px) {
+        .main-background .main-container h2 {
+          font-size: 2rem;
+          margin-bottom: 20px; } }
+    .main-background .main-container select {
+      font-family: "MTG";
+      font-size: 1rem;
+      letter-spacing: .15rem;
+      height: 45px;
+      color: white;
+      border: none;
+      border-radius: 500px;
+      background: linear-gradient(#4599BA, #1B6D92, #303560, #000037);
+      outline: none; }
+    .main-background .main-container select, .main-background .main-container button {
+      font-size: 1rem;
+      letter-spacing: .15rem;
+      padding: 20px 0;
+      width: 100%; }
+      @media screen and (min-width: 960px) {
+        .main-background .main-container select, .main-background .main-container button {
+          width: 50%; } }
+    .main-background .main-container .previous-pools {
+      text-align: center; }
+  .main-background .pools {
+    width: 100%;
+    margin: 0 auto;
+    border-top: 2px solid #6d5f4f;
+    border-bottom: 2px solid #6d5f4f; }
+    @media screen and (min-width: 960px) {
+      .main-background .pools {
+        max-width: 960px;
+        border-left: 2px solid #6d5f4f;
+        border-right: 2px solid #6d5f4f; } }
+    @media screen and (min-width: 1200px) {
+      .main-background .pools {
+        max-width: 80%; } }
+    .main-background .pools .pool-placeholder {
+      text-align: center;
+      padding: 20px 0; }
+    .main-background .pools .pool {
+      border-bottom: 2px solid #6d5f4f;
+      cursor: pointer;
+      background: rgba(0, 0, 0, 0.5); }
+      .main-background .pools .pool:last-child {
+        border-bottom: none; }
+      .main-background .pools .pool-container {
+        width: 95%;
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between; }
+      .main-background .pools .pool-name {
+        padding: 20px 0;
+        width: 100%; }
+      .main-background .pools .pool-delete {
+        padding: 20px 0;
+        text-align: center;
+        width: 100px;
+        margin-right: -2.5%;
+        border-left: 2px solid #6d5f4f;
+        background: linear-gradient(rgba(255, 0, 0, 0.5), rgba(155, 0, 0, 0.5), rgba(55, 0, 0, 0.5)); }
+
+@media screen and (min-width: 960px) {
+  .sealed-new, .set-dropdown {
+    display: flex;
+    justify-content: space-between;
+    align-items: center; } }
+
+input, select {
+  font-family: "MTG";
+  letter-spacing: .125rem;
+  background-color: transparent;
+  color: #fff;
+  border: 1px solid #fff;
+  font-size: 1rem;
+  border-radius: 5px;
+  padding: 5px 0;
+  padding-left: 5px;
+  margin: -7px 0; }
+
+select {
+  height: 40px; }
 
 .sealed-background {
   height: 100vh;
@@ -53,7 +196,7 @@ button {
 
 .divider {
   width: 100%;
-  background: linear-gradient(red, darkred 25%, #121212);
+  background: linear-gradient(#4599BA, #1B6D92, #303560, #000037);
   border-top: 5px solid #000;
   border-bottom: 5px solid #000;
   position: absolute;
@@ -84,6 +227,8 @@ button {
     font-size: .95rem;
     margin-top: 10px;
     margin-bottom: 10px; }
+  .sealed-header input {
+    margin-left: -6px; }
   .sealed-header nav {
     display: flex;
     width: 100vw; }
@@ -97,33 +242,41 @@ button {
       width: 100%;
       height: 65px;
       border-right: 1px solid #000;
-      background: linear-gradient(red, darkred 25%, #121212);
+      background: linear-gradient(#4599BA, #1B6D92, #303560, #000037);
       padding: 20px 0; }
       .sealed-header nav div:last-child {
         border-right: none; }
       .sealed-header nav div:hover {
         cursor: pointer; }
 
-.play-area {
+.play-area, .analyze-area {
   display: flex;
   height: 100vh;
   align-items: center;
   z-index: 1000;
   padding-top: 100px; }
-  .play-area.display {
+  .play-area.display, .analyze-area.display {
     justify-content: flex-end; }
-  .play-area .pool, .play-area .deck {
+  .play-area .pool, .play-area .deck, .play-area .charts, .analyze-area .pool, .analyze-area .deck, .analyze-area .charts {
     padding: 100px 0;
     white-space: nowrap;
     overflow-x: scroll;
     z-index: 1000; }
-  .play-area .card {
+  .play-area .charts, .analyze-area .charts {
+    background: rgba(0, 0, 0, 0.2); }
+  .play-area .chart, .analyze-area .chart {
+    display: inline-block;
+    color: #fff; }
+  .play-area .card, .play-area .chart, .analyze-area .card, .analyze-area .chart {
     width: 350px;
     margin-left: 10px;
     z-index: 1000; }
-    .play-area .card img {
+    .play-area .card img, .play-area .chart img, .analyze-area .card img, .analyze-area .chart img {
       width: 100%;
+      height: 100%;
       z-index: 1000; }
+    .play-area .card:last-child, .play-area .chart:last-child, .analyze-area .card:last-child, .analyze-area .chart:last-child {
+      margin-right: 10px; }
 
 .sealed-footer {
   display: flex;
@@ -143,7 +296,7 @@ button {
     width: 100%;
     height: 65px;
     border-right: 1px solid #000;
-    background: linear-gradient(red, darkred 25%, #121212);
+    background: linear-gradient(#4599BA, #1B6D92, #303560, #000037);
     padding: 20px 0; }
     .sealed-footer div:last-child {
       border-right: none; }
@@ -159,7 +312,7 @@ button {
   bottom: 65px;
   left: 50%;
   transform: translate(-50%, 100%);
-  transition: .7s; }
+  transition: transform .7s; }
   .sealed-footer--filter div, .sealed-footer--sort div, .sealed-footer--lands div {
     text-align: center;
     display: flex;
@@ -170,18 +323,34 @@ button {
     width: 100%;
     height: 65px;
     border-right: 1px solid #000;
-    background: linear-gradient(red, darkred 25%, #121212);
+    background: linear-gradient(#4599BA, #1B6D92, #303560, #000037);
     padding: 20px 0;
     height: 65px; }
     .sealed-footer--filter div:last-child, .sealed-footer--sort div:last-child, .sealed-footer--lands div:last-child {
       border-right: none; }
     .sealed-footer--filter div:hover, .sealed-footer--sort div:hover, .sealed-footer--lands div:hover {
       cursor: pointer; }
+  .sealed-footer--filter input, .sealed-footer--sort input, .sealed-footer--lands input {
+    margin-left: 10px; }
+
+.sealed-footer--lands div, .sealed-footer--filter div {
+  text-align: left;
+  justify-content: space-between;
+  flex-basis: 1;
+  padding-left: 2.5%;
+  padding-right: 2.5%; }
+  .sealed-footer--lands div span, .sealed-footer--filter div span {
+    width: 100px; }
+  .sealed-footer--lands div input[type="submit"], .sealed-footer--filter div input[type="submit"] {
+    padding: 10px 5px; }
+
+.sealed-footer--filter div:last-child {
+  justify-content: center; }
 
 .show {
   height: auto;
   transform: translate(-50%, 0);
-  transition: .7s; }
+  transition: transform .7s; }
 
 .green {
   color: green; }
@@ -189,17 +358,102 @@ button {
 .red {
   color: red; }
 
+.login-background {
+  background-image: url(../../assets/jace.jpg);
+  height: 100vh;
+  width: 100vw;
+  position: relative;
+  background-size: cover;
+  background-position: top center; }
+  .login-background .form-area {
+    color: white;
+    position: absolute;
+    top: 60%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(0, 0, 0, 0.5);
+    width: 80%;
+    padding: 20px 10px;
+    border: 1px solid black;
+    border-radius: 5px;
+    text-align: center; }
+    .login-background .form-area .page-header {
+      margin-bottom: 20px; }
+      .login-background .form-area .page-header small {
+        display: block; }
+    .login-background .form-area input {
+      color: #fff;
+      font-size: 1rem;
+      width: 100%;
+      border: none;
+      border-radius: 8px;
+      padding: 10px 0;
+      padding-left: 15px;
+      padding-right: -15px;
+      margin: 5px 0;
+      background-color: rgba(0, 0, 0, 0.5);
+      border: 1px solid #000; }
+      .login-background .form-area input::-webkit-input-placeholder {
+        color: #fff; }
+    .login-background .form-area button {
+      width: 100%;
+      font-size: 1rem; }
+    .login-background .form-area .register-label, .login-background .form-area .login-label {
+      margin: 20px 0; }
+
+.register-background {
+  background-image: url(../../assets/jace.jpg);
+  height: 100vh;
+  width: 100vw;
+  position: relative;
+  background-size: cover;
+  background-position: top center; }
+  .register-background .form-area {
+    color: white;
+    position: absolute;
+    top: 60%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(0, 0, 0, 0.5);
+    width: 80%;
+    padding: 20px 10px;
+    border: 1px solid black;
+    border-radius: 5px;
+    text-align: center; }
+    .register-background .form-area .page-header {
+      margin-bottom: 20px; }
+      .register-background .form-area .page-header small {
+        display: block; }
+    .register-background .form-area input {
+      color: #fff;
+      font-size: 1rem;
+      width: 100%;
+      border: none;
+      border-radius: 8px;
+      padding: 10px 0;
+      padding-left: 15px;
+      padding-right: -15px;
+      margin: 5px 0;
+      background-color: rgba(0, 0, 0, 0.5);
+      border: 1px solid #000; }
+      .register-background .form-area input::-webkit-input-placeholder {
+        color: #fff; }
+    .register-background .form-area button {
+      width: 100%;
+      font-size: 1rem; }
+    .register-background .form-area .register-label, .register-background .form-area .login-label {
+      margin: 20px 0; }
+
 #loaderDiv {
-  font-family: Helvetica;
+  color: #fff;
   position: fixed;
   top: 0;
   right: 0;
   bottom: 0;
   left: 0;
-  z-index: 1100;
-  background-color: white;
-  opacity: .6;
-  font-size: 1.5rem; }
+  z-index: 5000000;
+  background-color: rgba(0, 0, 0, 0.7);
+  font-size: 2.5rem; }
   #loaderDiv div {
     position: absolute;
     top: 50%;

@@ -9,6 +9,12 @@
           {{ sealedCtrl._UserService.profile.firstName }} {{ sealedCtrl._UserService.profile.lastName }}'s
       </h1>
       <h2>
+        Set:
+        <span>
+          {{ sealedCtrl.set.name }}
+        </span>
+      </h2>
+      <h2>
         Deck Name:
         <span ng-hide="sealedCtrl.edit">
           {{ sealedCtrl.sealedPool.title }}
@@ -39,7 +45,7 @@
       </nav>
   </header>
 
-  <div class="play-area">
+  <div class="play-area" ng-hide="sealedCtrl.analyzing === true">
 
     <div class="pool" ng-show="sealedCtrl.display === 'sealed'">
       <div class="card inline" ng-hide="card.selected" ng-click="sealedCtrl.toggleCard(card)" ng-repeat="card in sealedCtrl.cards | orderBy: sealedCtrl.sort | filter: {'selected': false}| filter: sealedCtrl.filter">
@@ -55,11 +61,17 @@
 
   </div>
 
+  <div class="analyze-area" ng-show="sealedCtrl.analyzing === true">
+    <div class="charts">
+
+    </div>
+  </div>
+
   <footer class="sealed-footer">
     <div ng-click="sealedCtrl.displaySort()">Sort</div>
     <div ng-click="sealedCtrl.displayFilter()">Filter</div>
     <div ng-click="sealedCtrl.displayLands()">Add Lands</div>
-    <div ng-click="sealedCtrl.hideMenus()">Analyze Deck</div>
+    <div ng-click="sealedCtrl.analyzeShow()">Analyze Deck</div>
   </footer>
 
   <footer class="sealed-footer--sort" ng-class="{ 'show': sealedCtrl.showSort }">
@@ -133,27 +145,27 @@
 
   <footer class="sealed-footer--lands" ng-class="{ 'show': sealedCtrl.showLands }">
     <div>
-      Plains
+      <span>Plains</span>
       <input type="number" min="1" ng-model="sealedCtrl.numLands">
       <input type="submit" value="Add Lands" ng-click="sealedCtrl.addLands('Plains')">
     </div>
     <div>
-      Islands
+      <span>Islands</span>
       <input type="number" min="1" ng-model="sealedCtrl.numLands">
       <input type="submit" value="Add Lands" ng-click="sealedCtrl.addLands('island')">
     </div>
     <div>
-      Swamps
+      <span>Swamps</span>
       <input type="number" min="1" ng-model="sealedCtrl.numLands">
       <input type="submit" value="Add Lands" ng-click="sealedCtrl.addLands('swamp')">
     </div>
     <div>
-      Mountains
+      <span>Mountains</span>
       <input type="number" min="1" ng-model="sealedCtrl.numLands">
       <input type="submit" value="Add Lands" ng-click="sealedCtrl.addLands('mountain')">
     </div>
     <div>
-      Forests
+      <span>Forests</span>
       <input type="number" min="1" ng-model="sealedCtrl.numLands">
       <input type="submit" value="Add Lands" ng-click="sealedCtrl.addLands('forest')">
     </div>

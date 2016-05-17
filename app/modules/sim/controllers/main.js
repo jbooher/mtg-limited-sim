@@ -56,6 +56,14 @@ class MainController {
     }
   }
 
+  deletePool(pool) {
+    let confirmed = confirm(`Are you sure you want to delete: ${pool.title}`);
+
+    if(confirmed) {
+      this._SimService.delete(pool);
+    }
+  }
+
   logout() {
     this._UserService.logout();
     this._$state.go("login");
