@@ -461,6 +461,8 @@ select {
   padding-right: 2.5%; }
   .sealed-footer--lands div span, .sealed-footer--filter div span {
     width: 100px; }
+  .sealed-footer--lands div input[type="number"], .sealed-footer--filter div input[type="number"] {
+    width: 50px; }
   .sealed-footer--lands div input[type="submit"], .sealed-footer--filter div input[type="submit"] {
     padding: 10px 5px; }
     @media screen and (max-height: 420px) {
