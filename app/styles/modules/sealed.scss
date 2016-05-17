@@ -211,6 +211,7 @@ select {
 
   .card {
     @media screen and (max-height: 420px) {
+      margin-top: 25px;
       width: 125px;
     }
 

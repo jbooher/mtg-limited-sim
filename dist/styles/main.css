@@ -347,6 +347,7 @@ select {
       margin-right: 10px; }
   @media screen and (max-height: 420px) {
     .play-area .card, .analyze-area .card {
+      margin-top: 25px;
       width: 125px; } }
   @media screen and (min-height: 421px) and (max-height: 640px) {
     .play-area .card, .analyze-area .card {
