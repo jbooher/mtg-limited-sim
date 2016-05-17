@@ -33,13 +33,21 @@
       margin-right: auto;
       display: flex;
       justify-content: space-between;
-      align-items: center;
+      align-items: flex-start;
 
       transform: skewY(5deg);
 
-      @media screen and (min-width: 650px) {
+      small {
+        display: block;
+      }
+
+      @media screen and (min-width: 640px) {
         button {
           font-size: 1rem;
+        }
+
+        small {
+          display: inline;
         }
       }
 
@@ -127,12 +135,12 @@
     margin: 0 auto;
     border-top: 2px solid rgb(109, 95, 79);
     border-bottom: 2px solid rgb(109, 95, 79);
-    margin-bottom: 50px;
 
     @media screen and (min-width: 960px) {
       max-width: 960px;
       border-left: 2px solid rgb(109, 95, 79);
       border-right: 2px solid rgb(109, 95, 79);
+      margin-bottom: 50px;
     }
 
     @media screen and (min-width: 1200px) {

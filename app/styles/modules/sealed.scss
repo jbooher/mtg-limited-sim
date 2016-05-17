@@ -9,14 +9,22 @@ input, select {
   padding: 5px 0;
   padding-left: 5px;
   margin: -7px 0;
+
+  @media screen and (max-height: 420px) {
+    font-size: .5rem;
+  }
 }
 
 select {
   height: 40px;
+
+  @media screen and (max-height: 420px) {
+    height: 20px;
+  }
 }
 
 .sealed-background {
-  height: 100vh;
+  min-height: 100vh;
   width: 100vw;
   position: relative;
   background: linear-gradient(#000, #333, #666 50%, #333, #000);
@@ -49,6 +57,10 @@ select {
   transform: translateX(-50%);
   z-index: 10000;
 
+  @media screen and (max-height: 420px) {
+    font-size: .5rem;
+  }
+
   h1, h2 {
 
     width: 95%;
@@ -58,22 +70,80 @@ select {
   }
 
   h1 {
-    margin-top: 10px;
+    margin-top: 5px;
   }
 
   h2 {
     font-size: .95rem;
-    margin-top: 10px;
-    margin-bottom: 10px;
+    margin-top: 5px;
+    margin-bottom: 5px;
   }
 
   input {
     margin-left: -6px;
   }
 
+  .header-title {
+
+    @media screen and (min-width: 640px) {
+      padding: 10px 0;
+      margin: 0 auto;
+      width: 80%;
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+
+      h2 {
+        text-align: center;
+
+        &:last-child {
+          text-align: right;
+        }
+      }
+
+    }
+
+    @media screen and (max-height: 420px) {
+      // width: 80%;
+
+      h1 {
+        display: none;
+      }
+
+      h2 {
+        font-size: .75rem;
+        text-align: center;
+
+        span {
+          font-size: .5rem;
+        }
+
+        &:nth-child(2) {
+          text-align: left;
+        }
+
+        &:last-child {
+          text-align: right;
+        }
+      }
+    }
+
+  }
+
   nav {
     display: flex;
     width: 100vw;
+    margin: 0 auto;
+
+    @media screen and (min-width: 640px) {
+      border: 2px solid #fff;
+      max-width: 640px;
+      border-radius: 5px;
+    }
+
+    @media screen and (min-width: 750px) {
+      max-width: 80%;
+    }
 
     div {
       @include nav-div;
@@ -91,6 +161,10 @@ select {
   z-index: 1000;
   padding-top: 100px;
 
+  @media screen and (max-height: 420px) {
+    padding-top: 25px;
+  }
+
   &.display {
     justify-content: flex-end;
   }
@@ -100,6 +174,10 @@ select {
     white-space: nowrap;
     overflow-x: scroll;
     z-index: 1000;
+
+    @media screen and (max-height: 650px) {
+      padding: 0;
+    }
   }
 
   .charts {
@@ -109,10 +187,14 @@ select {
   .chart {
     display: inline-block;
     color: #fff;
+
+    @media screen and (max-height: 420px) {
+      padding-top: 150px;
+    }
   }
 
   .card, .chart {
-    width: 350px;
+    width: 300px;
     margin-left: 10px;
     z-index: 1000;
 
@@ -126,6 +208,12 @@ select {
       margin-right: 10px;
     }
   }
+
+  .card {
+    @media screen and (max-height: 420px) {
+      width: 150px;
+    }
+  }
 }
 
 .sealed-footer {
@@ -136,6 +224,16 @@ select {
   left: 50%;
   transform: translateX(-50%);
   z-index: 1000000;
+
+  @media screen and (min-width: 640px) {
+    max-width: 640px;
+    border: 2px solid #fff;
+    border-radius: 5px;
+  }
+
+  @media screen and (min-width: 750px) {
+    max-width: 80%;
+  }
 
   div {
     @include nav-div;
@@ -148,18 +246,42 @@ select {
   width: 100vw;
   z-index: 10000;
   position: fixed;
-  bottom: 65px;
+  bottom: 50px;
   left: 50%;
   transform: translate(-50%, 100%);
   transition: transform .7s;
 
+  @media screen and (max-height: 420px) {
+    bottom: 30px;
+  }
+
+  @media screen and (min-width: 640px) {
+    bottom: 50px;
+  }
+
+  @media screen and (min-width: 750px) {
+    bottom: 75px;
+  }
+
   div {
     @include nav-div;
-    height: 65px;
+
+    @media screen and (min-width: 640px) {
+      border: 1px solid #fff;
+      border-radius: 5px;
+
+      &:last-child {
+        border-right: 1px solid #fff;
+      }
+    }
   }
 
   input {
     margin-left: 10px;
+  }
+
+  @media screen and (max-height: 420px) {
+    bottom: 30px;
   }
 }
 
@@ -177,6 +299,10 @@ select {
 
     input[type="submit"] {
       padding: 10px 5px;
+
+      @media screen and (max-height: 420px) {
+        padding: 5px 2.5px;
+      }
     }
   }
 }
@@ -194,9 +320,9 @@ select {
 }
 
 .green {
-  color: green;
+  color: chartreuse;
 }
 
 .red {
-  color: red;
+  color: crimson;
 }
