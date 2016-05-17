@@ -211,7 +211,11 @@ select {
 
   .card {
     @media screen and (max-height: 420px) {
-      width: 150px;
+      width: 125px;
+    }
+
+    @media screen and (max-height: 640px) {
+      width: 250px;
     }
   }
 }
