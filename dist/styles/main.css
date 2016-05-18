@@ -320,7 +320,6 @@ select {
   .play-area.display, .analyze-area.display {
     justify-content: flex-end; }
   .play-area .pool, .play-area .deck, .play-area .charts, .analyze-area .pool, .analyze-area .deck, .analyze-area .charts {
-    padding: 100px 0;
     white-space: nowrap;
     overflow-x: scroll;
     z-index: 1000; }
