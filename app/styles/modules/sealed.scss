@@ -40,6 +40,7 @@ select {
   transform: translateY(-50%);
   overflow: hidden;
   z-index: 0;
+  transform: translate3d(0,0,-1px);
 
   img {
     height: 120px;
