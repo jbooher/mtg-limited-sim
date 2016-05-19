@@ -214,8 +214,7 @@ select {
   top: 50%;
   transform: translateY(-50%);
   overflow: hidden;
-  z-index: 0;
-  transform: translate3d(0, 0, -1px); }
+  z-index: 0; }
   .divider img {
     height: 120px;
     margin-left: 50%;
