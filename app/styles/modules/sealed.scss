@@ -28,7 +28,6 @@ select {
   width: 100vw;
   position: relative;
   background: linear-gradient(#000, #333, #666 50%, #333, #000);
-  z-index: -200;
 }
 
 .divider {
@@ -40,7 +39,7 @@ select {
   top: 50%;
   transform: translateY(-50%);
   overflow: hidden;
-  z-index: -100;
+  z-index: 0;
 
   img {
     height: 120px;
@@ -159,7 +158,6 @@ select {
   display: flex;
   height: 100vh;
   align-items: center;
-  position: relative;
   z-index: 1000;
   padding-top: 100px;
 
